@@ -1,0 +1,22 @@
+@load_master('master')
+<div id="menu">
+  <div style="padding:5px;">
+    <span class="icon-cross" style="font-size:20px;cursor:pointer;float:right;" onclick="closeMenu()"></span>
+  </div>
+  <div id="munu_list"></div>
+</div>
+<div id="main_contents" class="grid grid-pad">
+  <div class="col-1-1" style="padding-top:15px;padding-bottom:0px;">
+      <div class="show-on-mobile_inline-block" style="margin-right:5px;cursor:pointer;" onclick="showMenu();"><span class="icon-list" style="font-size:20px;"></span></div>
+      <div id="title" onclick="location.href='@(WEB_ROOT)'">@(TITLE)</div>
+  </div>
+  <div id="table_of_contents" style="padding:5px;" class="col-3-12 hide-on-mobile">
+      @(menuList)
+  </div>
+  <div class="col-6-12">
+    <div>
+      @load_place()
+    </div>
+  </div>
+  <div class="col-3-12"></div>
+</div>

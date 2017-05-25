@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>@(TITLE)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/css/monogusa.css" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/css/font.css" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/css/simplegrid.css" />
+    <style>
+      @(STYLE)
+    </style>
+    @(HEAD)
+  </head>
+  <body>
+    <div id="dummy"></div>
+    <div id="overlay" style="display:none;">
+      <div id="overlay_box"></div>
+    </div>
+    <div id="overlay_message_box" class="dialog">
+      <div id="overlay_message_text" class="overlay_message" ></div>
+    </div>
+    <div id="confirm" class="dialog">
+      <div style="height:500px;background-color:#fff;display:inline-block;">
+      <button onclick="hideOverlay()">閉じる</button>
+      </div>
+    </div>
+
+    <!-- main -->
+    @load_place()
+    <div id="btm" style="width:1px;height:1px;"></div>
+  </body>
+  <script src="@(WEB_ROOT)/assets/js/monogusa.js@(NO_CACHE)"></script>
+  <script src="@(WEB_ROOT)/assets/js/common.js"></script>
+  <script src="@(WEB_ROOT)/assets/js/jquery-3.1.1.min.js"></script>
+<script>
+  var SERVER = '@(WEB_ROOT)';
+  var _TOKEN = '@(TOKEN)';
+  @(JS)
+</script>
+</html>

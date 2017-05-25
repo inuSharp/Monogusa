@@ -1,0 +1,7 @@
+; comment
+use_management = false
+session_path  = 
+debug         = false
+mesure_time   = false
+mesure_memory = false
+

@@ -1,0 +1,7 @@
+@load_layout('sample_layout')
+<div style="font-size:22px;">
+  Sample2
+</div>
+<div>
+  @(paramAAA)
+</div>
