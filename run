@@ -1,0 +1,52 @@
+<?php
+
+ini_set('date.timezone', 'Asia/Tokyo');
+mb_internal_encoding('UTF-8');
+mb_language('Japanese');
+
+
+$lists = [
+    "php run humanchek_gen",
+    "php run makeData",
+    "php run mode develop",
+    "php run mode production",
+    "php run register new 0",
+    "php run register updateTag 0",
+    "php run register updateTag worksOfCalc",
+    "php run migrate",
+    "php run updateTagList",
+];
+
+
+if (count($argv) < 2) {
+    echo "arguments too less. arguments : " . count($argv). "\n";
+    exit();
+}
+try {
+    require_once 'monogusa/MonogusaWeb.php';
+    require_once 'monogusa/MonogusaUtil.php';
+    require_once 'monogusa/MonogusaDB.php';
+    require_once 'monogusa/MonogusaWebClient.php';
+    $requireList = getFileLists('app/console');
+    foreach ($requireList as $require) {
+        require_once $require;
+    }
+
+    if ($argv[1] == 'list') {
+        foreach ($lists as $list) {
+            echo "$list\n";
+        }
+    } else {
+        $commandName = $argv[1];
+        $commandParam = $argv;
+        unset($commandParam[0]);
+        unset($commandParam[1]);
+        $commandParam = array_values($commandParam);
+        $commandName($commandParam);
+    }
+} catch (Exception $e) {
+    echo $e->getMessage().'  '.$e->getFile().'('.$e->getLine().')' . "\n";
+} finally {
+    
+}
+

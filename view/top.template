@@ -1,0 +1,12 @@
+@load_master('master')
+<main id="main">
+  <div id="header_margin"></div>
+  <div id="main-in">
+    <section class="inner">
+        <div class="panel"></div>
+        <div id="result">
+          @(result)
+        </div>
+    </section>
+  </div><!-- /#main-in -->
+</main>

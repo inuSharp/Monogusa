@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>@(TITLE)</title>
+    <style>
+      @place('css')
+    </style>
+    @(HEAD)
+  </head>
+  <body>
+    <!-- main -->
+    @place('content')
+  </body>
+<script>
+  var SERVER = '@(WEB_ROOT)';
+  var _TOKEN = '@(TOKEN)';
+  @place('js')
+</script>
+</html>
