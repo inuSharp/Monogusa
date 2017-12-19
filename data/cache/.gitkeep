@@ -1,0 +1,62 @@
+<?php
+
+function toBuy($commandParam)
+{
+    $sql = "select code from low_volume_codes where market_date = '".$commandParam[0]."'";
+    $ret = \Qb::select($sql);
+    if (count($ret) == 0) {
+        echo "no record\n";
+        return;
+    }
+
+    foreach ($ret as $row) {
+        $output = '';
+        $sql      = "select code, end_price, volume from tm_temp_daily where market_date >= '".$commandParam[0]."' and code= " . $row['code'] . " order by market_date desc;";
+        $codeData = \Qb::select($sql);
+        if (count($codeData) == 0) {
+            echo "no record\n";
+            continue;
+        }
+
+        foreach ($codeData as $codeDataRow) {
+            $output .= $codeDataRow['end_price']. ',' .$codeDataRow['volume'] . "\n";
+        }
+        file_put_contents(dataDir().'/stock/'. $row['code'] . '.txt', $output);
+    }
+}
+
+function toBuy2($commandParam)
+{
+    $sql = "select code from available_for_purchase where price <= 30000 order by code";
+    $codes = \Qb::select($sql);
+    if (count($codes) == 0) {
+        echo "no record\n";
+        return;
+    }
+
+    $ymd = date("Y-m-d");
+    $values = '';
+    foreach ($codes as $row) {
+        $sql      = "select market_date, end_price, volume from tm_temp_daily where code = ".$row['code']." order by market_date desc limit 2;";
+        $codeData = \Qb::select($sql);
+        if (count($codeData) <= 1) {
+            echo "no record\n";
+            continue;
+        }
+
+        $latestVolume    = $codeData[0]['volume'];
+        $oneDayOldVolume = $codeData[1]['volume'];
+
+        // 前日の55%より大きければ対象外
+        if ($oneDayOldVolume * 0.55 < $latestVolume) {
+            continue;
+        }
+        $values .= "(" . $row['code'] . ", '" . $ymd . "'),";
+    }
+    if ($values == '') {
+        return;
+    }
+    $values = rtrim($values, ',');
+    \Qb::execSQL('insert into half_down_volume_codes values ' . $values);
+}
+
