@@ -3,20 +3,22 @@
 // topページ
 route('GET','/', function () {
     global $TITLE, $META;
-
-    $description .= ' - ' . C('SITE_TITLE');
+    $description = 'Top - ' . C('SITE_TITLE');
     $TITLE        = $description;
     $META = '<meta name="description" content="'.$description.'" />';
 
     render('top', [
-        'result'   => mainContents(),
-        'tag_list' => tagList(),
+        'result'   => '',
+        'expression' => false,
     ]);
 });
 
 // 
-route('GET','/work/:id', function ($id) {
+route('GET','/list/:id', function ($id) {
     global $TITLE, $META;
 
+    render('sample', [
+        'paramName'   => $id,
+    ]);
 });
 

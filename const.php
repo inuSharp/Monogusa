@@ -1,6 +1,6 @@
 <?php
 $consts = [
-    'SITE_TITLE' => '',
+    'SITE_TITLE' => 'サンプル',
 ];
 return $consts;
 

@@ -3,7 +3,7 @@
 function webInIt()
 {
     if (setting('app_key','') == '') {
-        throw new Exception("");
+        throw new Exception("app_key is blank");
     }
     if (setting('session_path', '') != '') {
         session_save_path(setting('session_path'));
