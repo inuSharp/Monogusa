@@ -1,0 +1,12 @@
+@load_master('base')
+@css
+.test {
+   color: #fff;
+}
+@endcss
+
+@(message)
+
+@js
+var aaa = 'bbb';
+@endjs

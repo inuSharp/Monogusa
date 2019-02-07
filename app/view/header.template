@@ -1,0 +1,16 @@
+<div class="header">
+
+@{if ($menu_show == true) }
+  <div class="show_on_sp show-menu" onclick="menuShow()">
+    <a class="menu-trigger" href="javascript:void(0)">
+      <span></span><span></span><span></span>
+    </a>
+  </div>
+@{else}
+  <span>&nbsp;</span>
+@{endif}
+
+  <div class="title-link" onclick="location.href='@(WEB_ROOT)'">
+    <div class="title">MONOGUSA</div>
+  </div>
+</div>

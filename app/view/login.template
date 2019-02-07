@@ -1,0 +1,49 @@
+@load_master('base_nomenu')
+@css
+/* css style */
+@endcss
+
+<!-- body -->
+    <!-- main -->
+    <div id="contents">
+
+      <!-- form -->
+      <h2 class="page_group_title mt40">ログイン</h2>
+      <div class="mt40">
+        <label class="form-label">ログインID</label>
+        <input id="loginId" type="text" class="form-text" placeholder="ログインID">
+        <label class="form-label">パスワード</label>
+        <input id="password" type="password" class="form-text" placeholder="パスワード">
+        <div class="tac">
+          <button class="btn mt40" onclick="login();">ログイン</button>
+        </div>
+      </div>
+
+    </div><!-- contents -->
+<!-- body -->
+
+@js
+function login() {
+  var data = {
+    id: document.getElementById('loginId').value,
+    pass: document.getElementById('password').value,
+  };
+  $.ajax({
+    url: SERVER + '/api/login',
+    type: "POST",
+    data: data
+  }).done(function (json) {
+    location.href = SERVER + '/mypage';
+  }).fail(function (jqXHR) {
+    var message = 'エラーが発生しました。';
+    if (jqXHR.status == 400) {
+      message = 'IDもしくはパスワードが違います。';
+    } else if (jqXHR.status == 404) {
+    } else {
+      console.log(jqXHR);
+    }
+    alertShow(message);
+  }).always(function () {
+  });
+}
+@endjs

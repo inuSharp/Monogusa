@@ -1,0 +1,50 @@
+.title {
+  color: #fff;
+}
+a {
+  color: #5c98c2;
+}
+pre {
+    background-color: #eee;
+}
+.menu-trigger span {
+  background-color: #fff;
+}
+.close.icon {
+  color: #000;
+}
+.menu_group {
+  color : #777;
+  /*background: #D1C4E9;*/
+  background: #f0f0f0;
+}
+
+.page_title {
+  color: #494949;
+  background: #f4f4f4;
+}
+.page_group_title {
+  background: #9C27B0;
+  color: white;
+}
+.caption {
+  color: #777;
+}
+.page_link {
+  color: #333;
+  background-color: #f2f2f2; /*EDE7F6*/
+}
+.page_link:hover {
+  color: #333;
+  background-color: #e0e0e0; /*EDE7F6*/
+}
+.header {
+  color: #fff;
+  background-color: #4A148C;
+}
+#overlayMenu {
+    background-color: #000;
+}
+#sp-menu {
+  background-color: #fff;
+}

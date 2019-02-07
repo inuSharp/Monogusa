@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+     <meta name="socket_server" content="http://node_share/">
+    <title>@(TITLE)</title>
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/tag_style.css@(NO_CACHE)" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/loading.css@(NO_CACHE)" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/calendar.css@(NO_CACHE)" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/modaal.min.css@(NO_CACHE)" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/simple-grid.css" />
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/monogusa.css@(NO_CACHE)" />
+    <!--<link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/monogusa_color_white.css@(NO_CACHE)" />-->
+    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/monogusa_color_white.css@(NO_CACHE)" />
+
+    <style>
+      @place('css')
+    </style>
+
+    @(HEAD)
+  </head>
+  <body>
+    <div id="overlayMenu" onclick="menuHide()"></div>
+    <div id="sp-menu" style="display:none;">
+        <div class="close-row" 
+             onclick="menuHide()"><div id="spMenuClose" class="close icon"></div></div>
+        <div id="spMenuList"></div>
+    </div>
+
+    <!-- header -->
+    @parts('header')
+
+    <!-- loading -->
+    @parts('loading')
+
+    <!-- Page View -->
+    <div id="page_contents">
+        <div class="left">
+            <div id="menu" class="show_on_pc">
+              <h3 class="menu_group">メニューグループ1</h3>
+              <p><a href="" class="page_link">メニュー</a></p>
+              <p><a href="" class="page_link">メニュー</a></p>
+              <p><a href="" class="page_link">メニュー</a></p>
+              <h3 class="menu_group">メニューグループ2</h3>
+              <p><a href="" class="page_link">メニュー</a></p>
+              <p><a href="" class="page_link">メニュー</a></p>
+              <p><a href="" class="page_link">メニュー</a></p>
+
+              <!-- 開閉サンプル -->
+              <h3 class="menu_group open_close">開閉サンプル1</h3>
+              <div class="dsp_n">
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+                  <p><a href="" class="page_link">メニュー</a></p>
+              </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container" style="padding:5px 3px;width: calc(100% - 8px)">
+              <div class="row">
+                <div class="col-12">
+
+                    @place('content')
+
+                </div><!-- col -->
+              </div>
+            </div>
+
+            <div class="pb100">&nbsp;</div>
+        </div>
+    </div>
+
+  </body>
+<script src="@(WEB_ROOT)/assets/jquery-3.1.1.min.js"></script>
+<script src="@(WEB_ROOT)/assets/jquery.minicalendar.js@(NO_CACHE)"></script>
+<script src="@(WEB_ROOT)/assets/modaal.min.js"></script>
+<script src="@(WEB_ROOT)/assets/monogusa.js"></script>
+<script>
+  var SERVER = '@(WEB_ROOT)';
+  var _TOKEN = '@(TOKEN)';
+
+  @place('js')
+
+  setOpenCloseEvent();
+</script>
+</html>

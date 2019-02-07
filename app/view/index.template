@@ -1,0 +1,22 @@
+@load_master('base')
+@css
+/* css style */
+@endcss
+
+<!-- body -->
+    <!-- main -->
+    <div id="contents">
+
+      <!-- form -->
+      <h2 class="page_group_title mt40">フォーム</h2>
+      <label class="form-label">サポート</label>
+      <input id="code" type="text" class="form-text" placeholder="サポートコード">
+      <button class="btn" onclick="supportStart();">開始</button>
+
+      @(test)
+
+    </div><!-- contents -->
+<!-- body -->
+
+@js
+@endjs

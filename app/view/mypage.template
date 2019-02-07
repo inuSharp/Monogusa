@@ -1,0 +1,28 @@
+@load_master('base')
+@css
+/* css style */
+@endcss
+
+<!-- body -->
+    <!-- main -->
+    <div id="contents">
+
+<div id="wrap">
+  <div id="mini-calendar"></div>
+</div>
+
+
+    </div><!-- contents -->
+<!-- body -->
+
+@js
+function calendar() {
+  showLoading();
+  $('#mini-calendar').html('');
+  var data = {
+      jsonData: SERVER + '/calendar/events'
+  };
+  $('#mini-calendar').miniCalendar(data);
+}
+calendar();
+@endjs

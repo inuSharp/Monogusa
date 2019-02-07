@@ -1,0 +1,66 @@
+* {
+  color: #4A148C;
+}
+.title {
+  color: #4A148C;
+}
+a {
+  color: #5c98c2;
+}
+pre {
+    background-color: #eee;
+}
+.menu-trigger span {
+  background-color: #4A148C;
+}
+.close.icon {
+  color: #000;
+}
+.menu_group {
+  color : #777;
+  /*background: #D1C4E9;*/
+  background: #f0f0f0;
+}
+
+.page_title {
+  color: #9C27B0;
+  border-left: solid 5px #BA68C8;
+  background: #f4f4f4;
+}
+.page_group_title {
+  background: #F8D6FF;
+  color: #9C27B0;
+}
+.caption {
+  color: #777;
+}
+.page_link {
+  color: #9C27B0;
+  background-color: #f8f8f8; /*EDE7F6*/
+}
+.page_link:hover {
+  background-color: #e0e0e0; /*EDE7F6*/
+}
+.header {
+  color: #4A148C;
+  background-color: #fff;
+  border-bottom: solid 1px #E1BEE7;
+}
+#overlayMenu {
+    background-color: #000;
+}
+#sp-menu {
+  background-color: #fff;
+}
+.btn {
+    border: solid 1px #BA68C8;
+    color: #BA68C8;
+}
+.btn:hover {
+    background: #F8D6FF;
+}
+.select_list a {
+  background: #f7f7f7;
+  color: #009688;
+  border-left: solid 6px #BA68C8;/*左線*/
+}

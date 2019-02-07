@@ -1,0 +1,12 @@
+<div id="loader-bg" style="display:none;">
+  <div id="loading">
+    <img src="@(WEB_ROOT)/assets/loading.gif">
+  </div>
+</div>
+<div id="alertMessageOuter"
+     style="display:none;position:fixed;"
+     class="alert tal">
+  <div onclick="messageClose()" 
+       style="color:#fff;font-weight:bold;float:right;cursor:pointer;">×</div>
+  <div id="alertMessage"></div>
+</div>

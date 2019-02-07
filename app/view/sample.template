@@ -1,0 +1,92 @@
+@load_master('base')
+@css
+/* css style */
+@endcss
+
+<!-- body -->
+    <!-- main -->
+    <div id="contents">
+      <h1 class="page_title">ページタイトル</h1>
+      <h2 class="page_group_title">グループタイトル</h2>
+      <pre><code>preタグ内</code></pre>
+
+
+      <h2 class="page_group_title mt40">グループタイトル</h2>
+      <p>pタグ1行目の中にいろいろ入れてます。月火水木ABCDE</p>
+      <p>pタグ2行目の中にいろいろ入れてます。月火水木ABCDE</p>
+      <p>pタグ3行目の中にいろいろ入れてます。月火水木ABCDE</p>
+                                              
+
+      <!-- form -->
+      <h2 class="page_group_title mt40">フォーム</h2>
+      <label class="form-label">ログインID</label>
+      <input type="text" class="form-text" placeholder="ログインID">
+      <label class="form-label">パスワード</label>
+      <input type="password" class="form-text" placeholder="パスワード">
+      <button class="btn">ログイン</button>
+
+      <div>
+        <label class="form-label">入力見出し</label>
+        <a>リンク</a><br>
+        <label class="form-label">入力見出し</label>
+        <input type="text" class="form-text">
+      </div>
+
+      <h2 class="page_group_title mt40">タグボタン</h2>
+      <div class="select_list">
+        <a>タグボタン</a>
+        <a>タグボタン</a>
+        <a>タグボタン</a>
+      </div>
+
+      <!-- spinner
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div> -->
+
+      <!-- Font -->
+      <h2 class="page_group_title mt40">フォントサンプル</h2>
+      <div class="tac fs48">48px文字サンプル123ABC</div>
+      <div class="tac fs42">42px文字サンプル123ABC</div>
+      <div class="tac fs38">38px文字サンプル123ABC</div>
+      <div class="tac fs36">36px文字サンプル123ABC</div>
+      <div class="tac fs34">34px文字サンプル123ABC</div>
+      <div class="tac fs32">32px文字サンプル123ABC</div>
+      <div class="tac fs30">30px文字サンプル123ABC</div>
+
+      <h2 class="page_group_title mt40">グリッドサンプル</h2>
+      <div class="row">
+        <div class="col-12 bgGray">12</div>
+      </div>
+      <div class="row">
+        <div class="col-1">1</div>
+        <div class="col-11 bgGray">11</div>
+      </div>
+      <div class="row">
+        <div class="col-2">2</div>
+        <div class="col-10 bgGray">10</div>
+      </div>
+      <div class="row">
+        <div class="col-3">3</div>
+        <div class="col-9 bgGray">9</div>
+      </div>
+      <div class="row">
+        <div class="col-4">4</div>
+        <div class="col-8 bgGray">8</div>
+      </div>
+      <div class="row">
+        <div class="col-5">5</div>
+        <div class="col-7 bgGray">7</div>
+      </div>
+      <div class="row">
+        <div class="col-6">6</div>
+        <div class="col-6 bgGray">6</div>
+      </div>
+
+    </div><!-- contents -->
+<!-- body -->
+
+@js
+@endjs
