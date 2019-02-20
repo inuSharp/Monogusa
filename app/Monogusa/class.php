@@ -52,11 +52,10 @@ class Log
         }
         self::$rotated = true;
 
-        // 日をまたぐ間はろーてーとしない
+        // 0:00:00～0:01:00の間はローテートしない
         $nowTime = date('His');
         $time = intval(date('His'));
-        // 0:05:00以下もしくは 23:55:00以上
-        if ($time < 500 || 235500 < $time) {
+        if ($time < 100) {
             return;
         }
 
@@ -76,7 +75,7 @@ class Log
                 }
                 rename($file, $backUpDir . '/' . basename($file));
             } catch(\Exception $e) {
-                file_put_contents(dataDir(). 'log_error.txt', 'rotate error');
+                file_put_contents('storage/log_error.txt', 'rotate error');
             }
         }
     }
@@ -112,3 +111,10 @@ class Model {
         return self::$tableName;
     }
 }
+class Commnad {
+    public function __destruct()
+    {
+        Log::info('Command destructor');
+    }
+}
+

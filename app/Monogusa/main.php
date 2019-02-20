@@ -266,6 +266,71 @@ function viewDir()
 {
     return 'app/view';
 }
+function frameworkCacheDir()
+{
+    return 'storage/cache/framework';
+}
+function execScheduler($schedules)
+{
+    $infoDir = CONSOLE_PATH . '/' . frameworkCacheDir();
+
+    $execDate = execDate();
+
+    foreach ($schedules as $schedule) {
+        $setting        = explode(',', $schedule);
+        $batchName      = $setting[0];
+        $schduleSetting = $setting[1];
+    
+        $fileName =str_replace([',', ':'], '_', $schedule);
+        $infoPath = $infoDir . '/' . $fileName . '.txt';
+    
+        // 指定の時間か
+        if (!scheduledTimeCheck($batchName, $schduleSetting, $infoPath)) {
+            continue;
+        }
+    
+        // 実行
+        $commnad = CONSOLE_PATH . '/console ' . $batchName;
+        if (strpos(PHP_OS, 'WIN')!==false) {
+            //「start」コマンドで非同期実行
+            $fp = popen('start php ' . $commnad, 'r');
+            pclose($fp);
+        } else {
+            exec('php '.$commnad.' > /dev/null &');
+        }
+        file_put_contents($infoPath, EXEC_TIME);
+        //if (true) {
+        //    exec("nohup php -c '' '起動PHPファイルパス' '引数ARGS' > /dev/null &");
+        //}
+    }
+}
+function scheduledTimeCheck($batchName, $schduleSetting, $infoPath)
+{
+    $execDate = execDate();
+
+    $lastExecuted = '20181231235959';
+    // 初めて実行する
+    if (file_exists($infoPath)) {
+        $lastExecuted = file_get_contents($infoPath);
+    }
+
+    if ($schduleSetting == 'every:1') {
+        return true;
+    }
+
+    $setting = explode(':', $schduleSetting);
+    $num     = intval($setting[1]);
+    switch ($setting[0]){
+        case 'every':
+            if ((intval($execDate['i']) % $num) == 0) {
+                return true;
+            }
+            break;
+        case 'hourly':
+    }
+
+    return false;
+}
 function loadPart($baseText)
 {
     $viewDir = viewDir();
@@ -565,29 +630,74 @@ function serviceInclude()
         require_once $file;
     }
 }
-try {
-    session_name("7CXziwojoiiejqji899h84hcb8");
-    session_start();
-
-    // sqlite
-    new \Pixie\Connection(
-        'sqlite', 
-        [
-            'driver'    => 'sqlite', // Db driver
-            'host'      => 'localhost',
-            'database'  => 'storage/data.db',
-        ],
-        'QB'
-    );
-
-    modelInclude();
-    serviceInclude();
-    webInIt();
-    require_once 'app/routes.php';
-    run();
-} catch (Exception $e) {
-    Log::error($e->getMessage().'  '.$e->getFile().'('.$e->getLine().')');
-    http_response_code(500);
-    echo json_encode(['message'=>'inernal server error!']);
+function getY($ymdhis)
+{
+    return substr($ymdhis, 0, 4);
 }
+function getYm($ymdhis)
+{
+    return substr($ymdhis, 0, 6);
+}
+function getYmd($ymdhis)
+{
+    return substr($ymdhis, 0, 8);
+}
+function getYmdH($ymdhis)
+{
+    return substr($ymdhis, 0, 10);
+}
+function getYmdHi($ymdhis)
+{
+    return substr($ymdhis, 0, 12);
+}
+function execDate()
+{
+    static $execDate;
+    if (is_null($execDate)) {
+        $execDate = [
+            'Y' => substr(EXEC_TIME, 0, 4),
+            'm' => substr(EXEC_TIME, 4, 2),
+            'd' => substr(EXEC_TIME, 6, 2),
+            'H' => substr(EXEC_TIME, 8, 2),
+            'i' => substr(EXEC_TIME, 10, 2),
+            's' => substr(EXEC_TIME, 12, 2),
+        ];
+    }
+    return $execDate;
+}
+function isCommandLineInterface()
+{
+    return (php_sapi_name() === 'cli');
+}
+
+define('EXEC_TIME', date("YmdHis"));
+
+if (!isCommandLineInterface()) {
+    try {
+        session_name("7CXziwojoiiejqji899h84hcb8");
+        session_start();
+    
+        // sqlite
+        new \Pixie\Connection(
+            'sqlite', 
+            [
+                'driver'    => 'sqlite', // Db driver
+                'host'      => 'localhost',
+                'database'  => 'storage/data.db',
+            ],
+            'QB'
+        );
+    
+        modelInclude();
+        serviceInclude();
+        webInIt();
+        require_once 'app/routes.php';
+        run();
+    } catch (Exception $e) {
+        Log::error($e->getMessage().'  '.$e->getFile().'('.$e->getLine().')');
+        http_response_code(500);
+        echo json_encode(['message'=>'inernal server error!']);
+    }
+}
+
 

@@ -1,0 +1,42 @@
+<?php
+
+ini_set('date.timezone', 'Asia/Tokyo');
+//ini_set('memory_limit', '512M');
+mb_internal_encoding('UTF-8');
+mb_language('Japanese');
+
+
+require_once '.setting.php';
+require 'vendor/autoload.php';
+require_once './app/Monogusa/class.php';
+require_once './app/Monogusa/main.php';
+
+
+// プロセスの指定がなければ終了
+if (count($argv) < 2) {
+    echo "please set process name\n";
+    exit();
+}
+
+define('CONSOLE_PATH',  getcwd());
+try {
+    $procFilePath = CONSOLE_PATH . '/app/Console/' . $argv[1] . 'Command.php';
+    if (file_exists($procFilePath)) {
+        require_once($procFilePath);
+        $className = $argv[1] . 'Command';
+        $class = new $className;
+        $class->run();
+    } else {
+        echo $procFilePath . ' is not found!' . "\n";
+    }
+} catch (Exception $e) {
+    $mes  = '[Exception!] '."\n";
+    $mes .= $e->getMessage() . "\n";
+    $mes .= $e->getFile() . '(' . $e->getLine() . ")\n";
+    Log::error($mes);
+    if ($argv[1] != 'scheduler') {
+        echo $mes;
+    }
+} finally {
+}
+
