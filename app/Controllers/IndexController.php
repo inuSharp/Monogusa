@@ -4,11 +4,7 @@ class IndexController
 {
     public function view()
     {
-        Log::info('test');
-        $user = User::select(['id', 'password'])->where('id', '=', 1)->get();
-        var_dump($user);
-        //echo toPlural('my_table');
-        //return render('index', ['test' => 'aaa']);
+        return render('index', ['test' => 'aaa']);
     }
 
     public function get()

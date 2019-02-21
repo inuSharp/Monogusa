@@ -81,36 +81,12 @@ class Log
     }
 }
 
-class Model {
-    private static $tableName = '';
-    public static function select($col)
-    {
-        $table = self::getTableName();
-        $ret = QB::table($table)->select($col);
-        return $ret;
-    }
-    public static function where($col, $condition, $value)
-    {
-        $table = self::getTableName();
-        $ret = QB::table($table)->where($col, $condition, $value);
-        return $ret;
-    }
-    public static function get()
-    {
-        $table = self::getTableName();
-        $ret = QB::table($table)->get();
-        return $ret;
-    }
+use Illuminate\Database\Capsule\Manager;
+class DB extends Manager {}
 
-    public static function getTableName()
-    {
-        if (self::$tableName != '') {
-            return self::$tableName;
-        }
-        self::$tableName = toPlural(strtolower(get_called_class()));
-        return self::$tableName;
-    }
-}
+use Illuminate\Database\Eloquent\Model as EModel;
+class Model extends EModel {}
+
 class Commnad {
     public function __destruct()
     {

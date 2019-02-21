@@ -672,29 +672,32 @@ function isCommandLineInterface()
 
 define('EXEC_TIME', date("YmdHis"));
 
-if (!isCommandLineInterface()) {
-    try {
+use Illuminate\Database\Capsule\Manager as Capsule;
+try {
+    if (!isCommandLineInterface()) {
         session_name("7CXziwojoiiejqji899h84hcb8");
         session_start();
-    
-        // sqlite
-        new \Pixie\Connection(
-            'sqlite', 
-            [
-                'driver'    => 'sqlite', // Db driver
-                'host'      => 'localhost',
-                'database'  => 'storage/data.db',
-            ],
-            'QB'
-        );
-    
+    }
+
+    if (setting('DB_USE')) {
+        $capsule = new Capsule;
+        $capsule->addConnection(setting('DB'));
+
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
         modelInclude();
-        serviceInclude();
+    }
+
+    serviceInclude();
+
+    if (!isCommandLineInterface()) {
         webInIt();
         require_once 'app/routes.php';
         run();
-    } catch (Exception $e) {
-        Log::error($e->getMessage().'  '.$e->getFile().'('.$e->getLine().')');
+    }
+} catch (Exception $e) {
+    Log::error($e->getMessage().'  '.$e->getFile().'('.$e->getLine().')');
+    if (!isCommandLineInterface()) {
         http_response_code(500);
         echo json_encode(['message'=>'inernal server error!']);
     }
