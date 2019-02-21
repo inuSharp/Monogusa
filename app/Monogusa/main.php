@@ -392,6 +392,12 @@ function makeCache($name)
         return;
     }
 
+    // ここからcache作成
+    $names = explode('/', $name);
+    if (count($names) == 2) {
+        makeFolderIfNotExists($cacheDir . '/' . $names[0]);
+    }
+
     $template = file_get_contents($viewDir . '/' . $name . '.template');
     $template = loadParentPage($template, 'load_layout', "place('content')");
     $template = loadParentPage($template, 'load_master', "place('content')");
@@ -668,6 +674,12 @@ function execDate()
 function isCommandLineInterface()
 {
     return (php_sapi_name() === 'cli');
+}
+function makeFolderIfNotExists($path)
+{
+    if (!file_exists($path)) {
+        mkdir($path, '0777', true);
+    }
 }
 
 define('EXEC_TIME', date("YmdHis"));
