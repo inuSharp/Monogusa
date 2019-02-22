@@ -6,7 +6,6 @@
      <meta name="socket_server" content="http://node_share/">
     <title>@(TITLE)</title>
     <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/tag_style.css@(NO_CACHE)" />
-    <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/loading.css@(NO_CACHE)" />
     <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/calendar.css@(NO_CACHE)" />
     <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/modaal.min.css@(NO_CACHE)" />
     <link rel="stylesheet" type="text/css" href="@(WEB_ROOT)/assets/simple-grid.css" />

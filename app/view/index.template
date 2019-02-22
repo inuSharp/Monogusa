@@ -9,9 +9,9 @@
 
       <!-- form -->
       <h2 class="page_group_title mt40">フォーム</h2>
-      <label class="form-label">サポート</label>
-      <input id="code" type="text" class="form-text" placeholder="サポートコード">
-      <button class="btn" onclick="supportStart();">開始</button>
+      <label class="form-label">見出し</label>
+      <input id="code" type="text" class="form-text" placeholder="プレイスホルダー">
+      <button class="btn" onclick="supportStart();">ボタン</button>
 
       @(test)
 
